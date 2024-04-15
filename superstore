@@ -1,3 +1,5 @@
+#This project uses the following Superstore data:
+
 CREATE TABLE superstore (
     item_id INTEGER PRIMARY KEY,
     item_name TEXT,
@@ -24,3 +26,66 @@ VALUES
     (13, 'Slow Cooker', 'Appliances', 49.95, 30, 4.7),
     (14, 'Cutlery Set', 'Kitchen Supplies', 34.50, 40, 4.4),
     (15, 'Cozy Throw Blanket', 'Furnishings', 24.99, 100, 4.2);
+
+#For this project I used SQL to query the Superstore database to retrieve information about the prices of items sold at the store.
+
+#Use a SELECT statement to order the items by price in a descending order.
+SELECT *
+FROM superstore
+WHERE price
+ORDER BY price desc;
+
+#Show a statistic about the item prices.
+SELECT SUM(price)
+FROM superstore;
+
+#Show a statistic about the item prices grouped by the item name.
+SELECT SUM(price), item_name
+FROM superstore
+GROUP BY item_name;
+
+#Show a statistic about the item prices grouped by average rating of the item.
+SELECT SUM(price), average_rating
+FROM superstore
+GROUP BY average_rating;
+
+#Show a statistic about the item prices based on the average.
+SELECT AVG(price)
+FROM superstore;
+
+#Show a statistic about price based on the count or number of rows.
+SELECT COUNT(price)
+FROM superstore;
+
+#Show a statistic about price based on the minimum amount.
+SELECT MIN(price)
+FROM superstore;
+
+#Show a statistic about price based on the maximum amount. 
+SELECT MAX(price)
+FROM superstore;
+
+#Show a statistic about price grouped by item name.
+SELECT MAX(price), item_name
+FROM superstore
+GROUP BY item_name;
+
+#Show a statistic about price grouped by category.
+SELECT MIN(price), category
+FROM superstore
+GROUP BY category;
+
+#Show a statistic about price where the category is Kitchen Supplies based on the sum.
+SELECT SUM(price)
+FROM superstore
+WHERE category="Kitchen Supplies";
+
+#Show a statistic about price where the category is Kitchen supplies based on the average.
+SELECT AVG(price)
+FROM superstore
+WHERE category="Kitchen Supplies";
+
+#Show me a statistic about price where the category is Kitchen supplies based on counting the rows. 
+SELECT COUNT(price)
+FROM superstore
+WHERE category="Kitchen Supplies";
