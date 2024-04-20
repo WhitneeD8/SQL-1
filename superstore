@@ -30,7 +30,7 @@ VALUES
 #For this project I used SQL to query the Superstore database to retrieve information about the prices of items sold at the store.
 
 #Use a SELECT statement to order the items by price in a descending order.
-SELECT *
+SELECT item_name,price
 FROM superstore
 WHERE price
 ORDER BY price desc;
@@ -39,15 +39,10 @@ ORDER BY price desc;
 SELECT SUM(price)
 FROM superstore;
 
-#Show a statistic about the item prices grouped by the item name.
-SELECT SUM(price), item_name
-FROM superstore
-GROUP BY item_name;
-
 #Show a statistic about the item prices grouped by average rating of the item.
-SELECT SUM(price), average_rating
+SELECT SUM(price), average_rating, item_name
 FROM superstore
-GROUP BY average_rating;
+GROUP BY average_rating, item_name;
 
 #Show a statistic about the item prices based on the average.
 SELECT AVG(price)
@@ -76,16 +71,16 @@ FROM superstore
 GROUP BY category;
 
 #Show a statistic about price where the category is Kitchen Supplies based on the sum.
-SELECT SUM(price)
+SELECT SUM(price), category 
 FROM superstore
 WHERE category="Kitchen Supplies";
 
 #Show a statistic about price where the category is Kitchen supplies based on the average.
-SELECT AVG(price)
+SELECT AVG(price), category
 FROM superstore
 WHERE category="Kitchen Supplies";
 
 #Show me a statistic about price where the category is Kitchen supplies based on counting the rows. 
-SELECT COUNT(price)
+SELECT COUNT(price), category
 FROM superstore
 WHERE category="Kitchen Supplies";
