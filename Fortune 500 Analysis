@@ -57,23 +57,25 @@ VALUES
     ('Company JJ', 'Manufacturing', 370.0, 3100, 1, 20, 12, 7.6),
     ('Company KK', 'Healthcare', 150.2, 3400, 0, 16, 8, 5.3);
 
+#Which companies have an average of at least 10 days PTO based on their industries?
 SELECT industry, company_name, AVG(paid_time_off_days)
 FROM fortune_companies
 GROUP BY industry
 HAVING AVG(paid_time_off_days)>=10
 ORDER BY company_name;
 
-SELECT company_name, AVG(paid_time_off_days)
-FROM fortune_companies
-GROUP BY company_name
-HAVING AVG(paid_time_off_days)>=10;
-
+#Order from greatest to least the avergage employee years of tenure at companies in the techonology industry with revenue of 350.1 billion or have 
+zero healthcare benefits.
 SELECT avg_employee_tenure, company_name
 FROM fortune_companies
 WHERE industry='Technology'
 AND revenue>=350.1
 OR healthcare_benefits=0
 ORDER BY avg_employee_tenure desc;
+
+
+#Assign all companies in the fortune companies table as "Good Company Culture", "Great Company Culture", and "Excellent Company Culture"
+based on the number of PTO.
 
 SELECT company_name,
 CASE WHEN paid_time_off_days>=20 THEN "Excellent Company Culture" 
@@ -82,3 +84,8 @@ WHEN paid_time_off_days>=10 THEN "Good Company Culture"
 ELSE "Poor Company Culture"
 END "Types of Company Culture"
 FROM fortune_companies;
+
+# Which company in the Finance industry has the least revenue, and what's their revenue? 
+SELECT company_name, min(revenue)
+FROM fortune_companies
+WHERE industry = 'Finance';
