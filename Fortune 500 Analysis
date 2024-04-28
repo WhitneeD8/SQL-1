@@ -58,13 +58,13 @@ VALUES
     ('Company KK', 'Healthcare', 150.2, 3400, 0, 16, 8, 5.3);
 
 #Which companies have an average of at least 10 days PTO based on their industries?
-SELECT industry, company_name, AVG(paid_time_off_days)
+SELECT industry, company_name, AVG(paid_time_off_days) AS PTO
 FROM fortune_companies
 GROUP BY industry
-HAVING AVG(paid_time_off_days)>=10
+HAVING PTO>=10
 ORDER BY company_name;
 
-#Order from greatest to least the avergage employee years of tenure at companies in the techonology industry with revenue of 350.1 billion or have 
+#Order from greatest to least the avergage employee years of tenure at companies in the techonology industry with revenue of at least 350.1 billion or have 
 zero healthcare benefits.
 SELECT avg_employee_tenure, company_name
 FROM fortune_companies
