@@ -1,3 +1,7 @@
+#This project provides insights on TV and Movies from Netflix
+
+#This project was written using PostgreSQL with the following information from the Netflix schema/dataset:
+
 CREATE TABLE netflix_titles_info
     ("show_id" varchar(5), "type" varchar(7), "title" varchar(58), "country" varchar(74), "date_added" timestamp, "release_year" int, "rating" varchar(5), "duration" varchar(9), "listed_in" varchar(74))
 ;
@@ -70,7 +74,7 @@ JOIN "netflix_people"
 ON netflix_titles_info.show_id=netflix_people.show_id;
 
 #3, When was the most recent batch of tv shows and/or movies added to the database? 
-select max(date_added)
+select max((date(date_added))
 FROM "netflix_titles_info";
 
 #4. List all the movies and tv shows in alphabetical order. 
